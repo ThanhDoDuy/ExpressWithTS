@@ -4,9 +4,10 @@ import config from "config";
 import { UserDocument } from "./user.models";
 
 // create user type
-export interface SchemaDocument extends UserDocument, mongoose.Document {
+export interface SessionDocument extends UserDocument, mongoose.Document {
     user: UserDocument["_id"];
     valid: boolean;
+    userAgent: string;
     // we have createdAt field because we have timestamps field
     createdAt: Date;
     updatedAt: Date;
@@ -20,6 +21,6 @@ const sessionSchema = new mongoose.Schema({
     { timestamps: true }
 );
 
-const SessionModel = mongoose.model("User", sessionSchema);
+const SessionModel = mongoose.model("Session", sessionSchema);
 
 export default SessionModel;
